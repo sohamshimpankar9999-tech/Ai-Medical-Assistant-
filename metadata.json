@@ -1,0 +1,5 @@
+{
+  "name": "AI Medical Assistant",
+  "description": "An intelligent AI-powered assistant that collects patient data, analyzes symptoms, and suggests possible conditions, medicines, and lifestyle advice in a structured medical report.",
+  "requestFramePermissions": []
+}
