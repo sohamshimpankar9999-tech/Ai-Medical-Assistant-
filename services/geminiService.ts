@@ -13,23 +13,34 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 function formatPatientDataForPrompt(data: PatientData): string {
     return `
-Here is the patient's data:
-- **Patient Details**:
+Here is the complete patient data profile for your analysis:
+
+- **Patient Vitals**:
   - Name: ${data.name || 'Not provided'}
   - Age: ${data.age || 'Not provided'}
   - Gender: ${data.gender || 'Not provided'}
-- **Current Symptoms**:
-  - ${data.symptoms || 'Not provided'}
-- **Medical History**:
-  - ${data.medicalHistory || 'Not provided'}
-- **Current Medications**:
-  - ${data.currentMedications || 'Not provided'}
-- **Allergies**:
-  - ${data.allergies || 'Not provided'}
-- **Lifestyle Factors (diet, sleep, exercise, stress)**:
-  - ${data.lifestyleFactors || 'Not provided'}
+  - Height: ${data.height ? `${data.height} cm` : 'Not provided'}
+  - Weight: ${data.weight ? `${data.weight} kg` : 'Not provided'}
 
-Please analyze this information, including any attached images, and generate the structured medical report as per your instructions.
+- **Medical Context**:
+  - Medical History: ${data.medicalHistory || 'None reported'}
+  - Family Medical History: ${data.familyMedicalHistory || 'None reported'}
+  - Current Medications: ${data.currentMedications || 'None reported'}
+  - Allergies: ${data.allergies || 'None reported'}
+
+- **Symptom Details**:
+  - Description: ${data.symptoms.length > 0 ? data.symptoms.join(', ') : 'Not provided'}
+  - Start Date: ${data.symptomStartDate || 'Not provided'}
+  - Intensity (1-10): ${data.symptomIntensity || 'Not provided'}
+
+- **Lifestyle Factors**:
+  - Dietary Habits: ${data.dietaryHabits || 'Not provided'}
+  - Exercise Frequency: ${data.exerciseFrequency || 'Not provided'}
+  - Sleep Patterns: ${data.sleepPatterns || 'Not provided'}
+  - Stress Level: ${data.stressLevel || 'Not provided'}
+  - Alcohol and Tobacco Use: ${data.alcoholAndTobaccoUse || 'Not provided'}
+
+Please generate the structured medical report based on this comprehensive data, following your core directives precisely.
 `;
 }
 
